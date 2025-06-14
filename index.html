@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahmed ElDanoon Design</title>
+
+
+  <style>
+  #tilt-image {
+      transition: transform 0.3s ease-out;
+      transform-style: preserve-3d;}
+  </style>
+  <style>
+    .perspective {
+perspective: 800px; /* تتحكم في عمق التأثير */
+}
+
+img:hover {
+/* التدوير عند المرور بالماوس */
+transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+box-shadow: 0 20px 30px rgba(0,0,0,0.4);}
+</style>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: "#d4b98c", secondary: "#8a7a5f" },
+          borderRadius: {
+            none: "0px",
+            sm: "4px",
+            DEFAULT: "8px",
+            md: "12px",
+            lg: "16px",
+            xl: "20px",
+            "2xl": "24px",
+            "3xl": "32px",
+            full: "9999px",
+            button: "8px",
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
+
+  <!-- Font Awesome CDN for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="stylesheet/main.css">
+  <style>
+    /* Custom styles for specific overrides */
+    .rounded-button {
+      border-radius: 0.375rem;
+    }
+
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Ensure process section line is positioned correctly */
+    #process .process-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: #e5e7eb;
+      z-index: -1;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    :where([class^="ri-"])::before {
+      content: "\f3c2";
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .hero-section {
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #d4b98c;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.05);
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #d4b98c;
+    }
+
+    .header-blur {
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      font-size: 120px;
+      color: rgba(212, 185, 140, 0.1);
+      line-height: 1;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  </style>
+
+</head>
+
+<body class="min-h-screen font-sans">
+  <!-- Navigation -->
+  <nav id="navbar"
+    class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white bg-opacity-0 backdrop-blur-sm text-white">
+
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold text-white">Ahmed ElDanoon</a>
+      <div class="hidden md:flex space-x-8">
+        <button onclick="scrollToSection('about')"
+          class="text-white nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer whitespace-nowrap">About</button>
+        <button onclick="scrollToSection('designs')"
+          class="text-white nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer whitespace-nowrap">Designs</button>
+        <button onclick="scrollToSection('projects')"
+          class="text-white nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer whitespace-nowrap">Projects</button>
+        <button onclick="scrollToSection('services')"
+          class="text-white nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer whitespace-nowrap">services</button>
+        <button onclick="scrollToSection('contact')"
+          class="text-white nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer whitespace-nowrap">Contact</button>
+      </div>
+      <button id="menu-toggle" class="md:hidden text-white focus:outline-none cursor-pointer">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-6 shadow-lg">
+      <div class="flex flex-col space-y-4">
+        <button onclick="scrollToSection('about')"
+          class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">About</button>
+        <button onclick="scrollToSection('designs')"
+          class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">Projects</button>
+        <button onclick="scrollToSection('projects')"
+          class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">Process</button>
+        <button onclick="scrollToSection('services')"
+          class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">Testimonials</button>
+        <button onclick="scrollToSection('contact')"
+          class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">Contact</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="relative h-screen flex items-center justify-center">
+    <div class="absolute inset-0 overflow-hidden">
+      <div id="slider" class="absolute inset-0 w-full h-full transition-all duration-700">
+        <img src="images/1/cover.webp" loading="lazy"
+          class="w-full h-full object-cover absolute opacity-100 transition-opacity duration-700">
+        <img src="images/5/New Damietta Apartment-4.webp" loading="lazy"
+          class="w-full h-full object-cover absolute opacity-0 transition-opacity duration-700">
+        <img src="images/3/cover 2.webp" loading="lazy"
+          class="w-full h-full object-cover absolute opacity-0 transition-opacity duration-700">
+        <img src="images/2/cover 3.webp" loading="lazy"
+          class="w-full h-full object-cover absolute opacity-0 transition-opacity duration-700">
+        <img src="images/4/New Damietta Apartment-30.webp" loading="lazy"
+          class="w-full h-full object-cover absolute opacity-0 transition-opacity duration-700">
+
+      </div>
+
+      <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+    </div>
+    <div class="relative z-10 text-center px-6">
+      <h1 class="text-5xl md:text-7xl font-bold text-white mb-4">Ahmed Eldanoon Designs</h1>
+      <p class="text-xl md:text-2xl text-white mb-8">Modern Spaces, Designed with Purpose</p>
+      <button onclick="scrollToSection('designs')"
+        class="px-8 py-3 bg-white bg-opacity-20 hover:bg-opacity-30 text-white border border-white transition duration-300 rounded-button whitespace-nowrap cursor-pointer">View
+        Designs</button>
+      <!-- Left Arrow -->
+      <button id="prev"
+        class="absolute left-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-80 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        &#10094;
+      </button>
+
+      <!-- Right Arrow -->
+      <button id="next"
+        class="absolute right-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-80 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        &#10095;
+      </button>
+    </div>
+  </section>
+  <!-- fixed icon -->
+  <div
+    class="fixed top-1/2 right-0 -translate-y-1/2 bg-gradient-to-b from-rose-100 to-white p-2 rounded-l-xl shadow-lg z-50">
+    <ul class="flex flex-col items-center space-y-4">
+      <li>
+        <a href="https://facebook.com" target="_blank"
+          class="text-black hover:scale-110 transition-transform duration-300">
+          <i class="fab fa-facebook-f text-2xl"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://instagram.com" target="_blank" class="text-black scale-125 transition-transform duration-300">
+          <i class="fab fa-instagram text-2xl"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://linkedin.com" target="_blank"
+          class="text-black hover:scale-125 transition-transform duration-300">
+          <i class="fab fa-linkedin-in text-2xl"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- About Section -->
+  <section id="about" class="py-20 md:py-28">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+        <div class="w-full md:w-1/2">
+          <div class="relative">
+            <img src="images\480490254_18179113090311475_5181601205904577879_n.webp" alt="About Our Design Studio" style="
+            transform: none;" loading="lazy"
+              class="w-full h-auto rounded-lg shadow-xl object-cover object-top" />
+            <div class="absolute -bottom-10 -right-10 bg-white p-6 rounded-lg shadow-lg hidden md:block">
+              <p class="text-4xl font-bold text-primary">15+</p>
+              <p class="text-sm text-gray-600">Years of Excellence</p>
+            </div>
+          </div>
+        </div>
+        <div class="w-full md:w-1/2">
+          <div class="max-w-lg">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+              Crafting Exceptional Spaces Since 2010
+            </h2>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              At Lumina Interiors, we believe that exceptional design goes
+              beyond aesthetics. Our approach combines artistic vision with
+              practical functionality to create spaces that reflect your
+              unique personality and lifestyle.
+            </p>
+            <p class="text-gray-600 mb-8 leading-relaxed">
+              Our team of award-winning designers brings decades of collective
+              experience to every project, ensuring that each space we create
+              is both beautiful and livable. From concept to completion, we
+              work closely with our clients to bring their vision to life.
+            </p>
+            <div class="grid grid-cols-2 gap-8 mb-8">
+              <div>
+                <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                  <i class="ri-award-line text-primary text-xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Award-Winning</h3>
+                <p class="text-gray-600 text-sm">
+                  Recognized for excellence in design innovation
+                </p>
+              </div>
+              <div>
+                <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                  <i class="ri-user-heart-line text-primary text-xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Client-Focused</h3>
+                <p class="text-gray-600 text-sm">
+                  Tailored solutions that reflect your unique style
+                </p>
+              </div>
+            </div>
+            <a href="#contact" class="inline-flex items-center gap-2 text-primary font-medium hover:underline">
+              Learn more about our approach
+              <i class="ri-arrow-right-line"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Designs Section -->
+  <section id="designs" class="py-20 md:py-28 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          Our Design Philosophy
+        </h2>
+        <p class="text-gray-600">
+          We believe in creating spaces that blend timeless elegance with
+          contemporary functionality, tailored to reflect your unique
+          personality and lifestyle.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 hover:shadow-md">
+          <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+            <i class="ri-palette-line text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Aesthetic Harmony</h3>
+          <p class="text-gray-600 mb-6">
+            We create balanced, cohesive spaces where every element works in
+            perfect harmony, from color palettes to material selections.
+          </p>
+          <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+            Explore more
+            <i class="ri-arrow-right-line ml-2"></i>
+          </a>
+        </div>
+        <div class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 hover:shadow-md">
+          <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+            <i class="ri-lightbulb-line text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Functional Innovation</h3>
+          <p class="text-gray-600 mb-6">
+            Beyond beauty, we prioritize functionality, creating spaces that
+            enhance your daily life through thoughtful design solutions.
+          </p>
+          <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+            Explore more
+            <i class="ri-arrow-right-line ml-2"></i>
+          </a>
+        </div>
+        <div class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 hover:shadow-md">
+          <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+            <i class="ri-plant-line text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Sustainable Luxury</h3>
+          <p class="text-gray-600 mb-6">
+            We incorporate eco-friendly materials and practices without
+            compromising on luxury, creating responsible yet elegant spaces.
+          </p>
+          <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+            Explore more
+            <i class="ri-arrow-right-line ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="aspect-w-4 aspect-h-3 rounded-lg" data-tilt data-tilt-max="4" data-tilt-scale="1.01">
+          <img src="images/05-Ras El Bar Apartment.webp" alt="Home Installation" id="tilt-image" loading="lazy"
+          class="w-full h-full object-cover rounded-lg shadow-lg transition-transform duration-200 ease-out" />
+        </div>
+        <div class="aspect-w-4 aspect-h-3 rounded-lg" data-tilt data-tilt-max="4" data-tilt-scale="1.01">
+          <img src="images/Damietta Apartment 06.webp" alt="Industrial Application" id="tilt-image" loading="lazy"
+          class="w-full h-full object-cover rounded-lg shadow-lg transition-transform duration-200 ease-out" />
+        </div>
+        <div class="aspect-w-4 aspect-h-3 rounded-lg" data-tilt data-tilt-max="4" data-tilt-scale="1.01">
+          <img src="images/Damietta Apartment 17.webp" alt="Core Technology" id="tilt-image" loading="lazy"
+          class="w-full h-full object-cover rounded-lg shadow-lg transition-transform duration-200 ease-out" />
+        </div>
+        <div class="aspect-w-4 aspect-h-3 rounded-lg" data-tilt data-tilt-max="4" data-tilt-scale="1.01">
+          <img src="images/04-Ras El Bar Apartment.webp" alt="Installation Process" id="tilt-image" loading="lazy"
+          class="w-full h-full object-cover rounded-lg shadow-lg transition-transform duration-200 ease-out" />
+        </div>
+        <div class="aspect-w-4 aspect-h-3 rounded-lg" data-tilt data-tilt-max="4" data-tilt-scale="1.01">
+          <img src="images/New Damietta Apartment-27.webp" alt="Control Interface" id="tilt-image" loading="lazy"
+          class="w-full h-full object-cover rounded-lg shadow-lg transition-transform duration-200 ease-out" />
+        </div>
+        <div class="aspect-w-4 aspect-h-3 rounded-lg" data-tilt data-tilt-max="4" data-tilt-scale="1.01">
+          <img src="images/dd18ca90f0bbd3d17e8ed5f571eb25c4.webp" alt="Outdoor Installation" id="tilt-image" loading="lazy"
+          class="w-full h-full object-cover rounded-lg shadow-lg transition-transform duration-200 ease-out" />
+        </div>
+        <div class="aspect-w-4 aspect-h-3 rounded-lg" data-tilt data-tilt-max="4" data-tilt-scale="1.01">
+          <img src="images/5a1f7a2c10846982e45394471afbff57 (1).webp" alt="Home Installation" id="tilt-image" loading="lazy"
+          class="w-full h-full object-cover rounded-lg shadow-lg transition-transform duration-200 ease-out" />
+        </div>
+        <div class="aspect-w-4 aspect-h-3 rounded-lg" data-tilt data-tilt-max="4" data-tilt-scale="1.01">
+          <img src="images/5/New Damietta Apartment-4.webp" alt="Home Installation" id="tilt-image" loading="lazy"
+          class="w-full h-full object-cover rounded-lg shadow-lg transition-transform duration-200 ease-out" />
+        </div>
+        <div class="aspect-w-4 aspect-h-3 rounded-lg" data-tilt data-tilt-max="4" data-tilt-scale="1.01">
+          <img src="images/05-Ras El Bar Apartment.webp" alt="Tilt Image" class="w-full h-full object-cover rounded-lg shadow-lg transition-transform duration-200 ease-out"  loading="lazy"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 md:py-28">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
+        <p class="text-gray-600">
+          Explore our portfolio of meticulously crafted spaces that showcase our commitment to exceptional design and
+          attention to detail.
+        </p>
+      </div>
+
+      <!-- Swiper Container -->
+      <div class="swiper mySwiper relative group">
+        <div class="swiper-wrapper">
+          <!-- Slide -->
+          <div class="swiper-slide">
+            <div class="project-card relative rounded-lg overflow-hidden shadow-md">
+              <img src="images/project3.webp" alt="Riverside Penthouse" loading="lazy"
+                class="w-full h-[400px] object-cover object-top transition-transform duration-700" />
+              <div
+                class="project-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+                <h3 class="text-xl font-semibold text-white mb-2">Riverside Penthouse</h3>
+                <p class="text-white/80 text-sm mb-4">A luxurious penthouse overlooking the Thames...</p>
+                <a href="porject1.html" target="_blank"
+                  class="inline-flex items-center text-primary font-medium hover:underline">
+                  View Project <i class="ri-arrow-right-line ml-2"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Copy and paste this slide for all other projects -->
+          <div class="swiper-slide">
+            <div class="project-card relative rounded-lg overflow-hidden shadow-md">
+              <img src="images/project2.webp" alt="Hampstead Residence" loading="lazy"
+                class="w-full h-[400px] object-cover object-top transition-transform duration-700" />
+              <div
+                class="project-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+                <h3 class="text-xl font-semibold text-white mb-2">Hampstead Residence</h3>
+                <p class="text-white/80 text-sm mb-4">A complete renovation of a historic home...</p>
+                <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+                  View Project <i class="ri-arrow-right-line ml-2"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="swiper-slide">
+            <div class="project-card relative rounded-lg overflow-hidden shadow-md">
+              <img src="images/project1.webp" alt="Mayfair Boutique Hotel"  loading="lazy"
+                class="w-full h-[400px] object-cover object-top transition-transform duration-700" />
+              <div
+                class="project-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+                <h3 class="text-xl font-semibold text-white mb-2">Mayfair Boutique Hotel</h3>
+                <p class="text-white/80 text-sm mb-4">28 uniquely designed rooms with custom furnishings.</p>
+                <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+                  View Project <i class="ri-arrow-right-line ml-2"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="project-card relative rounded-lg overflow-hidden shadow-md">
+              <img src="images/project1.webp" alt="Mayfair Boutique Hotel" loading="lazy"
+                class="w-full h-[400px] object-cover object-top transition-transform duration-700" />
+              <div
+                class="project-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+                <h3 class="text-xl font-semibold text-white mb-2">Mayfair Boutique Hotel</h3>
+                <p class="text-white/80 text-sm mb-4">28 uniquely designed rooms with custom furnishings.</p>
+                <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+                  View Project <i class="ri-arrow-right-line ml-2"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="project-card relative rounded-lg overflow-hidden shadow-md">
+              <img src="images/project1.webp" alt="Mayfair Boutique Hotel" loading="lazy"
+                class="w-full h-[400px] object-cover object-top transition-transform duration-700" />
+              <div
+                class="project-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+                <h3 class="text-xl font-semibold text-white mb-2">Mayfair Boutique Hotel</h3>
+                <p class="text-white/80 text-sm mb-4">28 uniquely designed rooms with custom furnishings.</p>
+                <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+                  View Project <i class="ri-arrow-right-line ml-2"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="project-card relative rounded-lg overflow-hidden shadow-md">
+              <img src="images/project1.webp" alt="Mayfair Boutique Hotel" loading="lazy"
+                class="w-full h-[400px] object-cover object-top transition-transform duration-700" />
+              <div
+                class="project-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+                <h3 class="text-xl font-semibold text-white mb-2">Mayfair Boutique Hotel</h3>
+                <p class="text-white/80 text-sm mb-4">28 uniquely designed rooms with custom furnishings.</p>
+                <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+                  View Project <i class="ri-arrow-right-line ml-2"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add more slides as needed -->
+        </div>
+
+        <!-- Navigation buttons -->
+
+        
+      </div>
+    </div>
+  </section>
+  <!-- Services Section -->
+  <section id="services" class="py-20 md:py-28 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
+        <p class="text-gray-600">
+          From concept to completion, we offer comprehensive design services
+          tailored to your unique needs and vision.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="service-card bg-white p-8 rounded-lg shadow-sm transition-all duration-300">
+          <div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+            <i class="ri-home-4-line text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Residential Design</h3>
+          <p class="text-gray-600 mb-6">
+            Transform your home into a sanctuary that reflects your personal
+            style and enhances your quality of life.
+          </p>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <i class="ri-check-line text-primary mt-1 mr-2"></i>
+              <span class="text-gray-600 text-sm">Complete home renovations</span>
+            </li>
+            <li class="flex items-start">
+              <i class="ri-check-line text-primary mt-1 mr-2"></i>
+              <span class="text-gray-600 text-sm">Room-by-room transformations</span>
+            </li>
+            <li class="flex items-start">
+              <i class="ri-check-line text-primary mt-1 mr-2"></i>
+              <span class="text-gray-600 text-sm">New construction design</span>
+            </li>
+          </ul>
+          <a href="#contact" class="inline-flex items-center text-primary font-medium hover:underline">
+            Learn more
+            <i class="ri-arrow-right-line ml-2"></i>
+          </a>
+        </div>
+        <div class="service-card bg-white p-8 rounded-lg shadow-sm transition-all duration-300">
+          <div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+            <i class="ri-building-line text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Commercial Design</h3>
+          <p class="text-gray-600 mb-6">
+            Create inspiring workspaces that boost productivity, impress
+            clients, and reflect your brand identity.
+          </p>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <i class="ri-check-line text-primary mt-1 mr-2"></i>
+              <span class="text-gray-600 text-sm">Office and retail spaces</span>
+            </li>
+            <li class="flex items-start">
+              <i class="ri-check-line text-primary mt-1 mr-2"></i>
+              <span class="text-gray-600 text-sm">Hospitality and restaurant design</span>
+            </li>
+            <li class="flex items-start">
+              <i class="ri-check-line text-primary mt-1 mr-2"></i>
+              <span class="text-gray-600 text-sm">Brand-aligned environments</span>
+            </li>
+          </ul>
+          <a href="#contact" class="inline-flex items-center text-primary font-medium hover:underline">
+            Learn more
+            <i class="ri-arrow-right-line ml-2"></i>
+          </a>
+        </div>
+        <div class="service-card bg-white p-8 rounded-lg shadow-sm transition-all duration-300">
+          <div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+            <i class="ri-pencil-ruler-2-line text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Bespoke Solutions</h3>
+          <p class="text-gray-600 mb-6">
+            Custom design elements that make your space truly unique, from
+            furniture to lighting and everything in between.
+          </p>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <i class="ri-check-line text-primary mt-1 mr-2"></i>
+              <span class="text-gray-600 text-sm">Custom furniture design</span>
+            </li>
+            <li class="flex items-start">
+              <i class="ri-check-line text-primary mt-1 mr-2"></i>
+              <span class="text-gray-600 text-sm">Lighting design and solutions</span>
+            </li>
+            <li class="flex items-start">
+              <i class="ri-check-line text-primary mt-1 mr-2"></i>
+              <span class="text-gray-600 text-sm">Art curation and placement</span>
+            </li>
+          </ul>
+          <a href="#contact" class="inline-flex items-center text-primary font-medium hover:underline">
+            Learn more
+            <i class="ri-arrow-right-line ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Testimonials Section -->
+  <section class="py-20 md:py-28">
+    <div class="container mx-auto px-6">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          What Our Clients Say
+        </h2>
+        <p class="text-gray-600">
+          Hear from our satisfied clients about their experience working with
+          our design team.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="testimonial-card bg-white p-8 rounded-lg shadow-sm border border-gray-100 relative">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 mr-4">
+              <img src="images/975bf5cd6f2fd8c74b203bfd93094d27.webp" alt="" loading="lazy"
+                class="w-14 h-14 rounded-full object-cover" />
+            </div>
+            <div>
+              <h4 class="text-lg font-semibold">Nely</h4>
+              <p class="text-gray-500 text-sm">Kensington Residence</p>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-6">
+            The team at AhmedElDanoon Interiors transformed our home beyond our
+            expectations. Their attention to detail and ability to understand
+            our vision resulted in a space that truly feels like us, but
+            elevated.
+          </p>
+          <div class="flex text-primary">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+        </div>
+        <div class="testimonial-card bg-white p-8 rounded-lg shadow-sm border border-gray-100 relative">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 mr-4">
+              <img src="images/bdfc6f1997a461c0608f2401646ef1c7.webp" alt="" loading="lazy"
+                class="w-14 h-14 rounded-full object-cover" />
+            </div>
+            <div>
+              <h4 class="text-lg font-semibold">Mohamed</h4>
+              <p class="text-gray-500 text-sm">Blackwell & Associates</p>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-6">
+            Working with AhmedElDanoon on our law firm's office redesign was a
+            seamless experience. They created a space that perfectly balances
+            professionalism with comfort, impressing both our team and
+            clients.
+          </p>
+          <div class="flex text-primary">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+        </div>
+        <div class="testimonial-card bg-white p-8 rounded-lg shadow-sm border border-gray-100 relative">
+          <div class="flex items-center mb-6">
+            <div class="flex-shrink-0 mr-4">
+              <img src="images/fbd0bad38076ea99b02014c0b3a409d9.webp" alt="" loading="lazy"
+                class="w-14 h-14 rounded-full object-cover" />
+            </div>
+            <div>
+              <h4 class="text-lg font-semibold">Hana</h4>
+              <p class="text-gray-500 text-sm">Azure Restaurant</p>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-6">
+            The design team at AhmedElDanoon understood exactly what we needed for
+            our restaurant. They created a space that not only looks stunning
+            but functions perfectly for our staff and enhances our guests'
+            experience.
+          </p>
+          <div class="flex text-primary">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 md:py-28 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            Let's Create Something Beautiful Together
+          </h2>
+          <p class="text-gray-600 mb-8">
+            Ready to transform your space? Contact us to schedule a
+            consultation with one of our expert designers.
+          </p>
+          <div class="space-y-6 mb-8">
+            <div class="flex items-start">
+              <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mr-4 flex-shrink-0">
+                <i class="ri-map-pin-line text-primary"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold mb-1">Visit Our Studio</h4>
+                <p class="text-gray-600">
+                  New damietta, Damietta,<br />Egypt
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mr-4 flex-shrink-0">
+                <i class="ri-phone-line text-primary"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold mb-1">Call Us</h4>
+                <p class="text-gray-600">+20 100 000 1112</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mr-4 flex-shrink-0">
+                <i class="ri-mail-line text-primary"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold mb-1">Email Us</h4>
+                <p class="text-gray-600">info@ahmedeldanoon.com</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex space-x-4">
+            <a href="#"
+              class="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-sm hover:bg-gray-50 transition-colors">
+              <i class="ri-instagram-line text-gray-600"></i>
+            </a>
+            <a href="#"
+              class="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-sm hover:bg-gray-50 transition-colors">
+              <i class="ri-pinterest-line text-gray-600"></i>
+            </a>
+            <a href="#"
+              class="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-sm hover:bg-gray-50 transition-colors">
+              <i class="ri-linkedin-line text-gray-600"></i>
+            </a>
+            <a href="#"
+              class="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-sm hover:bg-gray-50 transition-colors">
+              <i class="ri-facebook-line text-gray-600"></i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <form class="bg-white p-8 rounded-lg shadow-sm">
+            <h3 class="text-2xl font-semibold mb-6">Send Us a Message</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                <input type="text" id="name"
+                  class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20"
+                  placeholder="Your name" />
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                <input type="email" id="email"
+                  class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20"
+                  placeholder="Your email" />
+              </div>
+            </div>
+            <div class="mb-6">
+              <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+              <input type="tel" id="phone"
+                class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20"
+                placeholder="Your phone number" />
+            </div>
+            <div class="mb-6">
+              <label for="service" class="block text-sm font-medium text-gray-700 mb-2">Service Interested In</label>
+              <div class="relative">
+                <select id="service"
+                  class="w-full px-4 py-3 border border-gray-300 rounded appearance-none focus:ring-2 focus:ring-primary/20 pr-8">
+                  <option value="" disabled selected>Select a service</option>
+                  <option value="residential">Residential Design</option>
+                  <option value="commercial">Commercial Design</option>
+                  <option value="bespoke">Bespoke Solutions</option>
+                  <option value="consultation">Initial Consultation</option>
+                </select>
+                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                  <i class="ri-arrow-down-s-line text-gray-400"></i>
+                </div>
+              </div>
+            </div>
+            <div class="mb-6">
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
+              <textarea id="message" rows="4"
+                class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20"
+                placeholder="Tell us about your project..."></textarea>
+            </div>
+            <button type="submit"
+              class="w-full px-6 py-3.5 bg-primary text-white font-medium !rounded-button whitespace-nowrap transition-all hover:bg-opacity-90">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+  <!-- Footer -->
+  <footer class="py-12 bg-gray-50 border-t border-gray-200">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-6 md:mb-0">
+          <a href="#" class="text-xl font-bold text-black nav-link text-sm font-medium transition-colors">Ahmed
+            ElDanoon</a>
+          <p class="text-primary mt-2">Modern Interior Design</p>
+        </div>
+        <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 mb-6 md:mb-0">
+          <button onclick="scrollToSection('hero')"
+            class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">Home</button>
+          <button onclick="scrollToSection('about')"
+            class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">About</button>
+          <button onclick="scrollToSection('designs')"
+            class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">Designs</button>
+          <button onclick="scrollToSection('projects')"
+            class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">Projects</button>
+          <button onclick="scrollToSection('services')"
+            class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">Services</button>
+          <button onclick="scrollToSection('contact')"
+            class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">Contact</button>
+        </div>
+        <div class="flex space-x-4">
+          <a href="#"
+            class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer">
+            <i class="fab fa-instagram text-xl"></i>
+          </a>
+          <a href="#"
+            class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer">
+            <i class="fab fa-behance text-xl"></i>
+          </a>
+          <a href="#"
+            class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer">
+            <i class="fab fa-linkedin text-xl"></i>
+          </a>
+        </div>
+      </div>
+      <div class="mt-8 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm">
+        <p>© 2025 Eng Mohamed Shata. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    const navButtons = navbar.querySelectorAll('a, button');
+
+    window.addEventListener('scroll', () => {
+      const heroHeight = document.getElementById('hero').offsetHeight;
+      const scrollY = window.scrollY;
+
+      if (scrollY > heroHeight - 80) {
+        navbar.classList.add('bg-opacity-100', 'text-black');
+        navbar.classList.remove('bg-opacity-0', 'text-black');
+        navButtons.forEach(btn => {
+          btn.classList.remove('text-white');
+          btn.classList.add('text-black', 'hover:text-gray-700');
+        });
+      } else {
+        navbar.classList.remove('bg-opacity-100', 'text-black');
+        navbar.classList.add('bg-opacity-0', 'text-black');
+        navButtons.forEach(btn => {
+          btn.classList.remove('text-black', 'hover:text-gray-700');
+          btn.classList.add('text-white', 'hover:text-gray-300');
+        });
+      }
+    });
+
+
+
+  </script>
+
+  <script src="main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+
+  <script>
+    AOS.init();
+  </script>
+</body>
+
+</html>

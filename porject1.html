@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ahmed ElDanoon Design</title>
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: "#d4b98c", secondary: "#8a7a5f" },
+          borderRadius: {
+            none: "0px",
+            sm: "4px",
+            DEFAULT: "8px",
+            md: "12px",
+            lg: "16px",
+            xl: "20px",
+            "2xl": "24px",
+            "3xl": "32px",
+            full: "9999px",
+            button: "8px",
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="stylesheet/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+  <style>
+    :where([class^="ri-"])::before {
+      content: "\f3c2";
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #d4b98c;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .header-blur {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.03);
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .lightbox {
+      transition: opacity 0.3s ease;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #d4b98c;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .material-card:hover {
+      transform: translateY(-5px);
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800">
+  <!-- Navigation -->
+  <nav id="navbar"
+    class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white bg-opacity-0 backdrop-blur-sm text-white">
+
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold text-white">Ahmed ElDanoon</a>
+      <div class="hidden md:flex space-x-8">
+        <button onclick="scrollToSection('about')"
+          class="text-white nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer whitespace-nowrap">About</button>
+        <button onclick="scrollToSection('designs')"
+          class="text-white nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer whitespace-nowrap">Designs</button>
+        <button onclick="scrollToSection('projects')"
+          class="text-white active nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer whitespace-nowrap">Projects</button>
+        <button onclick="scrollToSection('services')"
+          class="text-white nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer whitespace-nowrap">services</button>
+        <button onclick="scrollToSection('contact')"
+          class="text-white nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer whitespace-nowrap">Contact</button>
+      </div>
+      <button id="menu-toggle" class="md:hidden text-white focus:outline-none cursor-pointer">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-6 shadow-lg">
+      <div class="flex flex-col space-y-4">
+        <button onclick="scrollToSection('about')"
+          class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">About</button>
+        <button onclick="scrollToSection('designs')"
+          class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">Projects</button>
+        <button onclick="scrollToSection('projects')"
+          class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">Process</button>
+        <button onclick="scrollToSection('services')"
+          class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">Testimonials</button>
+        <button onclick="scrollToSection('contact')"
+          class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">Contact</button>
+      </div>
+    </div>
+  </nav>
+  <!-- Hero Section -->
+  <section class="relative" id="hero">
+    <div class="w-full h-[100vh] overflow-hidden">
+      <img src="images/project1/modern scandnivian apartment/reception/New Damietta Apartment-2.webp" alt="heroimg" loading="lazy"
+        class="w-full h-full object-cover object-top" />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+    </div>
+    <div class="container mx-auto px-6 absolute bottom-0 left-0 right-0 pb-12">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+          Riverside Penthouse
+        </h1>
+        <div class="flex flex-wrap gap-6 text-white/90">
+          <div class="flex items-center">
+            <i class="ri-map-pin-line mr-2"></i>
+            <span>New damietta, Damietta, Egypt</span>
+          </div>
+          <div class="flex items-center">
+            <i class="ri-calendar-line mr-2"></i>
+            <span>Completed: January 2024</span>
+          </div>
+          <div class="flex items-center">
+            <i class="ri-ruler-line mr-2"></i>
+            <span>4,200 sq ft</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Project Overview -->
+  <section class="py-16 md:py-24">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-8">
+          <h2 class="text-3xl md:text-4xl font-bold mb-8">
+            Project Overview
+          </h2>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            This project focuses on creating a contemporary mixed with Scandinavian style , <br> serene living The
+            design prioritizes natural light, comfort, and subtle sophistication , <br> earth materials , aiming for a
+            tranquil retreat that is both aesthetically pleasing and highly functional.
+          </p>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+
+          </p>
+          <h3 class="text-2xl font-semibold mb-4">Client Requirements</h3>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start">
+              <i class="ri-check-line text-primary mt-1 mr-3"></i>
+              <span class="text-gray-600"> <span class="text-black">Bright and Airy Ambiance :</span> The client likely
+                desired a space that feels open, bright, and maximizes natural light.</span>
+            </li>
+            <li class="flex items-start">
+              <i class="ri-check-line text-primary mt-1 mr-3"></i>
+              <span class="text-gray-600"> <span class="text-black">Modern and Minimalist Aesthetic :</span> A
+                preference for clean lines, uncluttered spaces, and a contemporary look is evident.</span>
+            </li>
+            <li class="flex items-start">
+              <i class="ri-check-line text-primary mt-1 mr-3"></i>
+              <span class="text-gray-600"><span class="text-black">Comfort and Functionality :</span> The design needed
+                to be practical for daily living, offering comfortable seating and efficient storage solutions</span>
+            </li>
+            <li class="flex items-start">
+              <i class="ri-check-line text-primary mt-1 mr-3"></i>
+              <span class="text-gray-600"><span class="text-black">Integration of Natural Elements :</span> The use of
+                wood, natural textures, and plant motifs suggests a desire to bring elements of nature indoors.</span>
+            </li>
+            <li class="flex items-start">
+              <i class="ri-check-line text-primary mt-1 mr-3"></i>
+              <span class="text-black">Smart home integration throughout the residence</span>
+            </li>
+          </ul>
+          <h3 class="text-2xl font-semibold mb-4">Key Highlights</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                <i class="ri-lightbulb-line text-primary text-xl"></i>
+              </div>
+              <h4 class="text-lg font-semibold mb-2">
+                Custom Lighting Solutions
+              </h4>
+              <p class="text-gray-600 text-sm">
+                Bespoke lighting design that enhances the architecture while
+                providing perfect illumination for the art collection.
+              </p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                <i class="ri-home-gear-line text-primary text-xl"></i>
+              </div>
+              <h4 class="text-lg font-semibold mb-2">
+                Integrated Technology
+              </h4>
+              <p class="text-gray-600 text-sm">
+                State-of-the-art home automation system controlling lighting,
+                climate, audio/visual, and security features.
+              </p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                <i class="ri-layout-line text-primary text-xl"></i>
+              </div>
+              <h4 class="text-lg font-semibold mb-2">Open-Concept Design</h4>
+              <p class="text-gray-600 text-sm">
+                Thoughtfully designed spaces that flow seamlessly while
+                maintaining distinct functional areas.
+              </p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+                <i class="ri-plant-line text-primary text-xl"></i>
+              </div>
+              <h4 class="text-lg font-semibold mb-2">Sustainable Elements</h4>
+              <p class="text-gray-600 text-sm">
+                Eco-friendly materials and energy-efficient systems throughout
+                the residence.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-4">
+          <div class="bg-gray-50 p-8 rounded-lg sticky top-32">
+            <h3 class="text-xl font-semibold mb-6">Project Details</h3>
+            <div class="space-y-6">
+              <div>
+                <h4 class="text-sm uppercase text-gray-500 mb-2">Client</h4>
+                <p class="font-medium">Mohamed samy</p>
+              </div>
+              <div>
+                <h4 class="text-sm uppercase text-gray-500 mb-2">Location</h4>
+                <p class="font-medium">New damietta, Damietta, Egypt</p>
+              </div>
+              <div>
+                <h4 class="text-sm uppercase text-gray-500 mb-2">
+                  Project Type
+                </h4>
+                <p class="font-medium">Interior Design</p>
+              </div>
+              <div>
+                <h4 class="text-sm uppercase text-gray-500 mb-2">Size</h4>
+                <p class="font-medium">4,200 sq ft</p>
+              </div>
+              <div>
+                <h4 class="text-sm uppercase text-gray-500 mb-2">Timeline</h4>
+                <p class="font-medium">8 months</p>
+              </div>
+              <div>
+                <h4 class="text-sm uppercase text-gray-500 mb-2">
+                  Completion Date
+                </h4>
+                <p class="font-medium">January 2024</p>
+              </div>
+              <div>
+                <h4 class="text-sm uppercase text-gray-500 mb-2">
+                  Design Team
+                </h4>
+                <p class="font-medium">Charlotte Wilson, Lead Designer</p>
+                <p class="font-medium">
+                  James Thompson, Architectural Consultant
+                </p>
+                <p class="font-medium">Olivia Parker, Lighting Specialist</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Image Gallery -->
+  <section class="py-16 md:py-24 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Project Gallery</h2>
+      <p class="text-gray-600 mb-12 max-w-3xl">
+        Explore the sophisticated spaces of this riverside penthouse,
+        showcasing our meticulous attention to detail and commitment to
+        exceptional design.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="gallery-item col-span-1 md:col-span-2 relative rounded-lg overflow-hidden shadow-md cursor-pointer"
+          data-image-id="1"> 
+          <img src="images/project1/modern scandnivian apartment/reception/New Damietta Apartment-1.webp" alt="reception" style="height: 30rem;" loading="lazy"
+            class="w-full h-[400px] object-cover object-top transition-transform duration-500" />
+          <div
+            class="gallery-overlay absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center">
+              <div class="w-14 h-14 flex items-center justify-center bg-primary/80 rounded-full mb-3 mx-auto">
+                <i class="ri-zoom-in-line text-xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold">Reception</h3>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item relative rounded-lg overflow-hidden shadow-md cursor-pointer" data-image-id="2">
+          <img src="images/project1/modern scandnivian apartment/reception/New Damietta Apartment-3.webp" alt="reception" style="height: 30rem;" loading="lazy"
+            class="w-full h-[400px] object-cover object-top transition-transform duration-500" />
+          <div
+            class="gallery-overlay absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center">
+              <div class="w-14 h-14 flex items-center justify-center bg-primary/80 rounded-full mb-3 mx-auto">
+                <i class="ri-zoom-in-line text-xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold">Reception</h3>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item relative rounded-lg overflow-hidden shadow-md cursor-pointer" data-image-id="3">
+          <img src="images/project1/modern scandnivian apartment/reception/New Damietta Apartment-9.5.webp" alt="reception" loading="lazy"
+            class="w-full h-[400px] object-cover object-top transition-transform duration-500" />
+          <div
+            class="gallery-overlay absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center">
+              <div class="w-14 h-14 flex items-center justify-center bg-primary/80 rounded-full mb-3 mx-auto">
+                <i class="ri-zoom-in-line text-xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold">Reception</h3>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item relative rounded-lg overflow-hidden shadow-md cursor-pointer" data-image-id="4">
+          <img src="images/project1/modern scandnivian apartment/living room/New Damietta Apartment-16.webp" alt="livingroom" loading="lazy"
+            class="w-full h-[400px] object-cover object-top transition-transform duration-500" />
+          <div
+            class="gallery-overlay absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center">
+              <div class="w-14 h-14 flex items-center justify-center bg-primary/80 rounded-full mb-3 mx-auto">
+                <i class="ri-zoom-in-line text-xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold">Living Room</h3>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item col-span-1 md:col-span-2 relative rounded-lg overflow-hidden shadow-md cursor-pointer"
+          data-image-id="5">
+          <img src="images/project1/modern scandnivian apartment/master bedroom/New Damietta Apartment-23.webp" alt="masterbedroom" style="height: 35rem;" loading="lazy"
+            class="w-full h-[400px] object-cover object-top transition-transform duration-500" />
+          <div
+            class="gallery-overlay absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center">
+              <div class="w-14 h-14 flex items-center justify-center bg-primary/80 rounded-full mb-3 mx-auto">
+                <i class="ri-zoom-in-line text-xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold">Master Bedroom</h3>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item relative rounded-lg overflow-hidden shadow-md cursor-pointer" data-image-id="6">
+          <img src="images/project1/modern scandnivian apartment/masteer bedroom bathroom/New Damietta Apartment-27.webp" alt="masteer bedroom bathroom" style="height: 35rem;" loading="lazy"
+            class="w-full h-[400px] object-cover object-top transition-transform duration-500" />
+          <div
+            class="gallery-overlay absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center">
+              <div class="w-14 h-14 flex items-center justify-center bg-primary/80 rounded-full mb-3 mx-auto">
+                <i class="ri-zoom-in-line text-xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold">Masteer Bedroom Bathroom</h3>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item relative rounded-lg overflow-hidden shadow-md cursor-pointer" data-image-id="7">
+          <img src="images/project1/modern scandnivian apartment/master bathroom/New Damietta Apartment-18.webp" alt="master bathroom" style="height: 30rem;" loading="lazy"
+            class="w-full h-[400px] object-cover object-top transition-transform duration-500" />
+          <div
+            class="gallery-overlay absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center">
+              <div class="w-14 h-14 flex items-center justify-center bg-primary/80 rounded-full mb-3 mx-auto">
+                <i class="ri-zoom-in-line text-xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold">Master Bathroom</h3>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item relative rounded-lg overflow-hidden shadow-md cursor-pointer" data-image-id="4">
+          <img src="images/project1/modern scandnivian apartment/master bathroom/New Damietta Apartment-19.webp" alt="Master Bathroom" style="height: 30rem;" loading="lazy"
+            class="w-full h-[400px] object-cover object-top transition-transform duration-500" />
+          <div
+            class="gallery-overlay absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center">
+              <div class="w-14 h-14 flex items-center justify-center bg-primary/80 rounded-full mb-3 mx-auto">
+                <i class="ri-zoom-in-line text-xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold">Master Bathroom</h3>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item col-span-1 lg:col-span-3 relative rounded-lg overflow-hidden shadow-md cursor-pointer"
+          data-image-id="8">
+          <img src="images/project1/modern scandnivian apartment/garden/New Damietta Apartment-30.webp" alt="garden" style="height: 40rem;" loading="lazy"
+            class="w-full h-[500px] object-cover object-top transition-transform duration-500" />
+          <div
+            class="gallery-overlay absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center">
+              <div class="w-14 h-14 flex items-center justify-center bg-primary/80 rounded-full mb-3 mx-auto">
+                <i class="ri-zoom-in-line text-xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold">Garden</h3>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item relative rounded-lg overflow-hidden shadow-md cursor-pointer" data-image-id="4">
+          <img src="images/project1/modern scandnivian apartment/guest toilet/New Damietta Apartment-20.webp" alt="guesttoilet" style="height: 35rem;" loading="lazy"
+            class="w-full h-[400px] object-cover object-top transition-transform duration-500" />
+          <div
+            class="gallery-overlay absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center">
+              <div class="w-14 h-14 flex items-center justify-center bg-primary/80 rounded-full mb-3 mx-auto">
+                <i class="ri-zoom-in-line text-xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold">Guest Toilet</h3>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item col-span-1 md:col-span-2 relative rounded-lg overflow-hidden shadow-md cursor-pointer"
+          data-image-id="5">
+          <img src="images/project1/modern scandnivian apartment/boys bedroom/New Damietta Apartment-17.webp" alt="boysbedroom" style="height: 35rem;" loading="lazy"
+            class="w-full h-[400px] object-cover object-top transition-transform duration-500" />
+          <div
+            class="gallery-overlay absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center">
+              <div class="w-14 h-14 flex items-center justify-center bg-primary/80 rounded-full mb-3 mx-auto">
+                <i class="ri-zoom-in-line text-xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold">Boys Bedroom</h3>
+            </div>
+          </div>
+        </div>
+        <div class=" relative rounded-lg overflow-hidden cursor-pointer" >
+          
+        </div>
+        <div class="gallery-item relative rounded-lg overflow-hidden shadow-md cursor-pointer" data-image-id="4">
+          <img src="images/project1/modern scandnivian apartment/kitchen/New Damietta Apartment-21.webp" alt="kitchen" style="height: 30rem;" loading="lazy"
+            class="w-full h-[400px] object-cover object-top transition-transform duration-500" />
+          <div
+            class="gallery-overlay absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center">
+              <div class="w-14 h-14 flex items-center justify-center bg-primary/80 rounded-full mb-3 mx-auto">
+                <i class="ri-zoom-in-line text-xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold">Kitchen</h3>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item relative rounded-lg overflow-hidden shadow-md cursor-pointer" data-image-id="4">
+          <img src="images/project1/modern scandnivian apartment/kitchen/New Damietta Apartment-22.webp" alt="kitchen" style="height: 30rem;" loading="lazy"
+            class="w-full h-[400px] object-cover object-top transition-transform duration-500" />
+          <div
+            class="gallery-overlay absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center">
+              <div class="w-14 h-14 flex items-center justify-center bg-primary/80 rounded-full mb-3 mx-auto">
+                <i class="ri-zoom-in-line text-xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold">Kitchen</h3>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item col-span-1 lg:col-span-3 relative rounded-lg overflow-hidden shadow-md cursor-pointer"
+          data-image-id="8">
+          <img src="images/project1/modern scandnivian apartment/garden/New Damietta Apartment-29.webp" alt="garden" style="height: 45rem;" loading="lazy"
+            class="w-full h-[500px] object-cover object-top transition-transform duration-500" />
+          <div
+            class="gallery-overlay absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center">
+              <div class="w-14 h-14 flex items-center justify-center bg-primary/80 rounded-full mb-3 mx-auto">
+                <i class="ri-zoom-in-line text-xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold">Garden</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Lightbox -->
+  <div id="lightbox"
+    class="fixed inset-0 z-50 bg-black/90 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center">
+    <button id="close-lightbox" class="absolute top-6 right-6 text-white hover:text-primary transition-colors">
+      <i class="ri-close-line text-3xl"></i>
+    </button>
+    <button id="prev-image" class="absolute left-6 text-white hover:text-primary transition-colors">
+      <i class="ri-arrow-left-line text-3xl"></i>
+    </button>
+    <button id="next-image" class="absolute right-6 text-white hover:text-primary transition-colors">
+      <i class="ri-arrow-right-line text-3xl"></i>
+    </button>
+    <div id="lightbox-content" class="max-w-[90%] max-h-[90vh]">
+      <img id="lightbox-image" src="" alt="" class="max-w-full max-h-[90vh] object-contain" />
+      <div class="text-white text-center mt-4">
+        <h3 id="lightbox-title" class="text-xl font-semibold"></h3>
+      </div>
+    </div>
+  </div>
+  <!-- Design Approach -->
+  <section class="py-16 md:py-24">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-8">Design Approach</h2>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            <span class="text-black pb-50"> The design approach is one of understated elegance and thoughtful functionality, It emphasizes:</span>
+            <br>
+          <span class="text-black">Clean Lines and Minimalism:</span>
+Avoiding clutter and focusing on essential elements creates a sense of spaciousness. <br>
+          <span class="text-black">Material Harmony:</span>
+         A cohesive selection of materials, primarily light wood tones, white, and subtle textures, ensures a harmonious flow between spaces.
+ <br>
+          <span class="text-black">Layered Lighting:</span>
+           Strategic placement of various light sources creates different moods and functionalities.
+<br>
+          <span class="text-black">Textural Contrast:</span>
+          	 The combination of smooth surfaces (painted walls, cabinets) with rougher textures (macrame art, textured wall panel, rug) adds depth and interest.
+<br>
+          <span class="text-black">Biophilic Integration:</span>
+          	 Bringing in elements like wood, plants, and natural light connects the interior with nature.
+
+          </p>
+
+          
+      
+          <p class="text-gray-600 mb-8 leading-relaxed">
+           
+          </p>
+          <div class="space-y-8 mb-8">
+            <div>
+              <h3 class="text-xl font-semibold mb-4">Color Palette</h3>
+              <div class="flex space-x-4">
+                <div class="w-16 h-16 rounded-full bg-[#834629]"></div>
+                <div class="w-16 h-16 rounded-full bg-[#ab6f4d]"></div>
+                <div class="w-16 h-16 rounded-full bg-[#e7dbcd]"></div>
+                <div class="w-16 h-16 rounded-full bg-[#9ca18a]"></div>
+                <div class="w-16 h-16 rounded-full bg-[#525a43]"></div>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-4">Primary Neutrals</h3>
+              <p class="text-gray-600 leading-relaxed">
+                <span class="text-black">Warm Whites/Off-Whites:</span>  Walls, ceilings, main sofa upholstery, kitchen cabinets, and various decorative elements create a bright and airy base. <br>
+<span class="text-black">Light Wood Tones:</span> Found in flooring, TV unit, ceiling beams, and bedside tables, bringing warmth and natural texture.
+
+              </p>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-4">Accent Colors</h3>
+              <p class="text-gray-600 leading-relaxed">
+                <span class="text-black">Forest Green/Emerald:</span> A key accent color seen in the armchair in the living room, adding a pop of sophisticated color and connection to nature. <br>
+                <span class="text-black">Terracotta / coral :</span> A subtle accent on a throw pillow and a small side table, adding a touch of earthy warmth. <br>
+                <span class="text-black">Black/Dark Grey:</span> Used sparingly for TV screen, kitchen appliances, and track light fixtures, providing contrast and grounding the design. <br>
+
+              </p>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-4">Subtle Textural Hues</h3>
+              <p class="text-gray-600 leading-relaxed">
+                The textured wall panel in the living room introduces subtle variations of beige/grey, and the macrame art adds a soft, creamy texture.
+                
+
+              </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="space-y-6">
+              <img src="images/7aa49fdb8bd333066a0c06fce0d6d09e.webp" alt="Material Samples"
+                class="w-full h-auto rounded-lg shadow-md" />
+              <img src="images/e86dd3e5b67a87f6c31ed40f45dae1ec.webp" alt="Design Sketch"
+                class="w-full h-auto rounded-lg shadow-md" />
+            </div>
+            <div>
+              <img src="images/4892c7c177bfe38cd01cf3f8f737a2ba.webp" alt="Design Process"
+                class="w-full h-full object-cover object-top rounded-lg shadow-md" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Challenges & Solutions -->
+  <section class="py-16 md:py-24 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold mb-8">
+        Challenges & Solutions
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div>
+          <div class="bg-white p-8 rounded-lg shadow-sm mb-8">
+            <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+              <i class="ri-sun-line text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Creating a Warm Feel in a Predominantly White/Neutral Space</h3>
+            <p class="text-gray-600 mb-4">
+              
+            </p>
+            <div class="bg-gray-50 p-4 rounded">
+              <h4 class="font-medium mb-2">Our Solution:</h4>
+              <p class="text-gray-600">
+                Extensive use of light-toned wood (flooring, TV unit, ceiling accents) and soft, inviting textiles (plush rug, soft sofa upholstery, sheer curtains) successfully introduces warmth and prevents the space from feeling cold.
+              </p>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-lg shadow-sm"  style="height: 21.8rem;">
+            <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+              <i class="ri-sound-module-line text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">
+              Maximizing Storage without Clutter
+            </h3>
+            <p class="text-gray-600 mb-4">
+              
+            </p>
+            <div class="bg-gray-50 p-4 rounded ">
+              <h4 class="font-medium mb-2">Our Solution:</h4>
+              <p class="text-gray-600">
+                Utilizing built-in cabinetry (TV console, kitchen cabinets) and floating shelves provides ample storage that is integrated into the architectural design, maintaining clean lines.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="bg-white p-8 rounded-lg shadow-sm mb-8" style="height: 23.5rem;">
+            <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+              <i class="ri-gallery-line text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">
+              Integrating a Large Television Seamlessly
+            </h3>
+            <p class="text-gray-600 mb-4">
+              
+            </p>
+            <div class="bg-gray-50 p-4 rounded"  style="margin-top: 3.5rem;">
+              <h4 class="font-medium mb-2">Our Solution:</h4>
+              <p class="text-gray-600">
+                The TV is integrated into a custom-built, floating wooden wall unit, which includes open shelving, making it a cohesive part of the design rather than a standalone element.
+              </p>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-full mb-6">
+              <i class="ri-layout-masonry-line text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Kitchen spacing and storage spaces</h3>
+            <p class="text-gray-600 mb-4">
+              
+            </p>
+            <div class="bg-gray-50 p-4 rounded">
+              <h4 class="font-medium mb-2">Our Solution:</h4>
+              <p class="text-gray-600">
+                we redesign the area and we make all cabinet to the celling making to opposite sides one for big appliance and one for stove and sink and keep the movement space suitable for  streamlined move 
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- Related Projects -->
+  <section class="py-16 md:py-24">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Related Projects</h2>
+      <p class="text-gray-600 mb-12 max-w-3xl">
+        Explore more of our luxury residential projects that showcase our
+        commitment to exceptional design and attention to detail.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="project-card group relative rounded-lg overflow-hidden shadow-md">
+          <img src="images/616244d0ff991facf36e82a63e77b17b (1).webp" alt="Hampstead Residence"
+            class="w-full h-[400px] object-cover object-top transition-transform duration-700" />
+          <div
+            class="project-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+            <h3 class="text-xl font-semibold text-white mb-2">
+              Hampstead Residence
+            </h3>
+            <p class="text-white/80 text-sm mb-4">
+              A complete renovation of a historic home, blending traditional
+              architecture with contemporary design elements.
+            </p>
+            <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+              View Project
+              <i class="ri-arrow-right-line ml-2"></i>
+            </a>
+          </div>
+        </div>
+        <div class="project-card group relative rounded-lg overflow-hidden shadow-md">
+          <img src="images/4e9402fdd2477dc23210c021fc7d0ac1.webp" alt="Mayfair Townhouse"
+            class="w-full h-[400px] object-cover object-top transition-transform duration-700" />
+          <div
+            class="project-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+            <h3 class="text-xl font-semibold text-white mb-2">
+              Mayfair Townhouse
+            </h3>
+            <p class="text-white/80 text-sm mb-4">
+              A sophisticated townhouse featuring custom millwork, bespoke
+              furniture, and a curated art collection.
+            </p>
+            <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+              View Project
+              <i class="ri-arrow-right-line ml-2"></i>
+            </a>
+          </div>
+        </div>
+        <div class="project-card group relative rounded-lg overflow-hidden shadow-md">
+          <img src="images/c5902a4eb1f9eced440bf97e648d77ae.webp" alt="Knightsbridge Apartment"
+            class="w-full h-[400px] object-cover object-top transition-transform duration-700" />
+          <div
+            class="project-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+            <h3 class="text-xl font-semibold text-white mb-2">
+              Knightsbridge Apartment
+            </h3>
+            <p class="text-white/80 text-sm mb-4">
+              A luxurious pied-à-terre designed for a client who divides time
+              between London and New York.
+            </p>
+            <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+              View Project
+              <i class="ri-arrow-right-line ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CTA Section -->
+  <section id="contact" class="py-16 md:py-24 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            Ready to Transform Your Space?
+          </h2>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Let's discuss how we can create a bespoke design that reflects
+            your unique style and enhances your lifestyle. Our team of expert
+            designers is ready to bring your vision to life.
+          </p>
+          <div class="space-y-6 mb-8">
+            <div class="flex items-start">
+              <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mr-4 flex-shrink-0">
+                <i class="ri-user-star-line text-primary"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold mb-1">
+                  Personalized Approach
+                </h4>
+                <p class="text-gray-600">
+                  Every project begins with understanding your unique needs
+                  and preferences.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mr-4 flex-shrink-0">
+                <i class="ri-team-line text-primary"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold mb-1">Expert Team</h4>
+                <p class="text-gray-600">
+                  Our award-winning designers bring decades of experience to
+                  your project.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mr-4 flex-shrink-0">
+                <i class="ri-service-line text-primary"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold mb-1">End-to-End Service</h4>
+                <p class="text-gray-600">
+                  From concept to completion, we handle every aspect of your
+                  project.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <form class="bg-white p-8 rounded-lg shadow-sm">
+            <h3 class="text-2xl font-semibold mb-6">Book a Consultation</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                <input type="text" id="name"
+                  class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20"
+                  placeholder="Your name" />
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                <input type="email" id="email"
+                  class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20"
+                  placeholder="Your email" />
+              </div>
+            </div>
+            <div class="mb-6">
+              <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+              <input type="tel" id="phone"
+                class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20"
+                placeholder="Your phone number" />
+            </div>
+            <div class="mb-6">
+              <label for="project-type" class="block text-sm font-medium text-gray-700 mb-2">Project Type</label>
+              <div class="relative">
+                <select id="project-type"
+                  class="w-full px-4 py-3 border border-gray-300 rounded appearance-none focus:ring-2 focus:ring-primary/20 pr-8">
+                  <option value="" disabled selected>
+                    Select project type
+                  </option>
+                  <option value="residential">Residential - Full Home</option>
+                  <option value="room">Residential - Single Room</option>
+                  <option value="commercial">Commercial Space</option>
+                  <option value="consultation">
+                    Initial Consultation Only
+                  </option>
+                </select>
+                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                  <i class="ri-arrow-down-s-line text-gray-400"></i>
+                </div>
+              </div>
+            </div>
+            <div class="mb-6">
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Tell Us About Your
+                Project</label>
+              <textarea id="message" rows="4"
+                class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20"
+                placeholder="Share your vision, timeline, and any specific requirements..."></textarea>
+            </div>
+            <button type="submit"
+              class="w-full px-6 py-3.5 bg-primary text-white font-medium !rounded-button whitespace-nowrap transition-all hover:bg-opacity-90">
+              Request Consultation
+            </button>
+            <p class="text-center text-gray-500 text-sm mt-4">
+              We'll respond to your inquiry within 24 hours
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="py-12 bg-gray-50 border-t border-gray-200">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-6 md:mb-0">
+          <a href="#" class="text-xl font-bold text-black nav-link text-sm font-medium transition-colors">Ahmed
+            ElDanoon</a>
+          <p class="text-primary mt-2">Modern Interior Design</p>
+        </div>
+        <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 mb-6 md:mb-0">
+          <button onclick="scrollToSection('hero')"
+            class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">Home</button>
+          <button onclick="scrollToSection('about')"
+            class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">About</button>
+          <button onclick="scrollToSection('designs')"
+            class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">Designs</button>
+          <button onclick="scrollToSection('projects')"
+            class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">Projects</button>
+          <button onclick="scrollToSection('services')"
+            class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">Services</button>
+          <button onclick="scrollToSection('contact')"
+            class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer rounded-button whitespace-nowrap">Contact</button>
+        </div>
+        <div class="flex space-x-4">
+          <a href="#"
+            class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer">
+            <i class="fab fa-instagram text-xl"></i>
+          </a>
+          <a href="#"
+            class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer">
+            <i class="fab fa-behance text-xl"></i>
+          </a>
+          <a href="#"
+            class="text-black nav-link text-sm font-medium hover:text-primary transition-colors cursor-pointer">
+            <i class="fab fa-linkedin text-xl"></i>
+          </a>
+        </div>
+      </div>
+      <div class="mt-8 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm">
+        <p>© 2025 Eng Mohamed Shata. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    const navButtons = navbar.querySelectorAll('a, button');
+
+    window.addEventListener('scroll', () => {
+      const heroHeight = document.getElementById('hero').offsetHeight;
+      const scrollY = window.scrollY;
+
+      if (scrollY > heroHeight - 80) {
+        navbar.classList.add('bg-opacity-100', 'text-black');
+        navbar.classList.remove('bg-opacity-0', 'text-black');
+        navButtons.forEach(btn => {
+          btn.classList.remove('text-white');
+          btn.classList.add('text-black', 'hover:text-gray-700');
+        });
+      } else {
+        navbar.classList.remove('bg-opacity-100', 'text-black');
+        navbar.classList.add('bg-opacity-0', 'text-black');
+        navButtons.forEach(btn => {
+          btn.classList.remove('text-black', 'hover:text-gray-700');
+          btn.classList.add('text-white', 'hover:text-gray-300');
+        });
+      }
+    });
+    // Smooth scroll to section
+    function scrollToSection(id) {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      // Close mobile menu
+      document.getElementById('mobile-menu').classList.add('hidden');
+      document.getElementById('menu-toggle').querySelector('i').classList.remove('fa-times');
+      document.getElementById('menu-toggle').querySelector('i').classList.add('fa-bars');
+    }
+
+    // Toggle mobile menu
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('menu-toggle').querySelector('i');
+      menu.classList.toggle('hidden');
+      if (menu.classList.contains('hidden')) {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      } else {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      }
+    });
+  </script>
+  <script id="smooth-scroll-script">
+    document.addEventListener("DOMContentLoaded", function () {
+      try {
+        const anchors = document.querySelectorAll('a[href^="#"]');
+        if (anchors.length === 0) {
+          console.warn("No anchor links found");
+          return;
+        }
+        anchors.forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            try {
+              e.preventDefault();
+              const targetId = this.getAttribute("href");
+              if (targetId === "#") return;
+              const targetElement = document.querySelector(targetId);
+              if (targetElement) {
+                const headerHeight =
+                  document.querySelector("header")?.offsetHeight || 80;
+                const offsetTop =
+                  targetElement.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({
+                  top: offsetTop - headerHeight,
+                  behavior: "smooth",
+                });
+              }
+            } catch (error) {
+              console.error("Smooth scroll error:", error);
+            }
+          });
+        });
+      } catch (error) {
+        console.error("Smooth scroll initialization error:", error);
+      }
+    });
+  </script>
+  <script id="gallery-lightbox-script">
+    document.addEventListener("DOMContentLoaded", function () {
+      try {
+        const images = [
+          {
+            src: "images/project1/modern scandnivian apartment/reception/New Damietta Apartment-1.webp",
+            title: "Reception",
+          },
+          {
+            src: "images/project1/modern scandnivian apartment/reception/New Damietta Apartment-3.webp",
+            title: "Reception",
+          },
+          {
+            src: "images/project1/modern scandnivian apartment/reception/New Damietta Apartment-9.5.webp",
+            title: "Reception",
+          },
+          {
+            src: "images/project1/modern scandnivian apartment/living room/New Damietta Apartment-16.webp",
+            title: "Living Room",
+          },
+          {
+            src: "images/project1/modern scandnivian apartment/master bedroom/New Damietta Apartment-23.webp",
+            title: "Master Bedroom",
+          },
+          {
+            src: "images/project1/modern scandnivian apartment/masteer bedroom bathroom/New Damietta Apartment-27.webp",
+            title: "Masteer Bedroom Bathroom",
+          },
+          {
+            src: "images/project1/modern scandnivian apartment/master bathroom/New Damietta Apartment-18.webp",
+            title: "master bathroom",
+          },
+          {
+            src: "images/project1/modern scandnivian apartment/master bathroom/New Damietta Apartment-19.webp",
+            title: "master bathroom",
+          },
+          {
+            src: "images/project1/modern scandnivian apartment/garden/New Damietta Apartment-30.webp",
+            title: "garden",
+          },
+          {
+            src: "images/project1/modern scandnivian apartment/guest toilet/New Damietta Apartment-20.webp",
+            title: "Guest Toilet",
+          },
+          {
+            src: "images/project1/modern scandnivian apartment/boys bedroom/New Damietta Apartment-17.webp",
+            title: "Boys Bedroom",
+          },
+          
+          {
+            src: "images/project1/modern scandnivian apartment/kitchen/New Damietta Apartment-21.webp",
+            title: "kitchen",
+          },
+          {
+            src: "images/project1/modern scandnivian apartment/kitchen/New Damietta Apartment-22.webp",
+            title: "kitchen",
+          },
+          {
+            src:"images/project1/modern scandnivian apartment/garden/New Damietta Apartment-29.webp",
+            title: "garden",
+          },
+        ];
+        let currentImageIndex = 0;
+        const galleryItems = document.querySelectorAll(".gallery-item");
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImage = document.getElementById("lightbox-image");
+        const lightboxTitle = document.getElementById("lightbox-title");
+        const closeLightbox = document.getElementById("close-lightbox");
+        const prevImage = document.getElementById("prev-image");
+        const nextImage = document.getElementById("next-image");
+        if (
+          !lightbox ||
+          !lightboxImage ||
+          !lightboxTitle ||
+          !closeLightbox ||
+          !prevImage ||
+          !nextImage ||
+          galleryItems.length === 0
+        ) {
+          console.warn("Some lightbox elements are missing");
+          return;
+        }
+        const openLightbox = (index) => {
+          if (index >= 0 && index < images.length) {
+            currentImageIndex = index;
+            lightboxImage.src = images[index].src;
+            lightboxTitle.textContent = images[index].title;
+            lightbox.classList.remove("hidden");
+            requestAnimationFrame(() => {
+              lightbox.classList.remove("opacity-0");
+            });
+            document.body.style.overflow = "hidden";
+          }
+        };
+        const closeLightboxFn = () => {
+          lightbox.classList.add("opacity-0");
+          setTimeout(() => {
+            lightbox.classList.add("hidden");
+            lightboxImage.src = "";
+          }, 300);
+          document.body.style.overflow = "";
+        };
+        const showPrevImage = () => {
+          currentImageIndex =
+            (currentImageIndex - 1 + images.length) % images.length;
+          lightboxImage.src = images[currentImageIndex].src;
+          lightboxTitle.textContent = images[currentImageIndex].title;
+        };
+        const showNextImage = () => {
+          currentImageIndex = (currentImageIndex + 1) % images.length;
+          lightboxImage.src = images[currentImageIndex].src;
+          lightboxTitle.textContent = images[currentImageIndex].title;
+        };
+        galleryItems.forEach((item, index) => {
+          item.addEventListener("click", () => openLightbox(index));
+        });
+        closeLightbox.addEventListener("click", closeLightboxFn);
+        prevImage.addEventListener("click", showPrevImage);
+        nextImage.addEventListener("click", showNextImage);
+        lightbox.addEventListener("click", (e) => {
+          if (e.target === lightbox) {
+            closeLightboxFn();
+          }
+        });
+        document.addEventListener("keydown", (e) => {
+          if (!lightbox.classList.contains("hidden")) {
+            switch (e.key) {
+              case "Escape":
+                closeLightboxFn();
+                break;
+              case "ArrowLeft":
+                showPrevImage();
+                break;
+              case "ArrowRight":
+                showNextImage();
+                break;
+            }
+          }
+        });
+      } catch (error) {
+        console.error("Gallery lightbox initialization error:", error);
+      }
+    });
+  </script>
+  <script id="charts-script">
+    document.addEventListener("DOMContentLoaded", function () {
+      try {
+        if (typeof echarts === "undefined") {
+          console.error("ECharts library not loaded");
+          return;
+        }
+        const satisfactionChartEl = document.getElementById("satisfaction-chart");
+        const budgetChartEl = document.getElementById("budget-chart");
+        if (!satisfactionChartEl || !budgetChartEl) {
+          console.warn("Chart elements not found");
+          return;
+        }
+        const satisfactionChart = echarts.init(satisfactionChartEl);
+        const budgetChart = echarts.init(budgetChartEl);
+        const satisfactionOption = {
+          animation: false,
+          tooltip: {
+            trigger: "axis",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            textStyle: {
+              color: "#1f2937",
+            },
+          },
+          grid: {
+            top: 10,
+            right: 10,
+            bottom: 30,
+            left: 60,
+            containLabel: true,
+          },
+          xAxis: {
+            type: "category",
+            data: [
+              "Initial Concept",
+              "Design Development",
+              "Implementation",
+              "Final Result",
+            ],
+            axisLine: {
+              lineStyle: {
+                color: "#d1d5db",
+              },
+            },
+            axisLabel: {
+              color: "#1f2937",
+              interval: 0,
+              rotate: 15,
+            },
+          },
+          yAxis: {
+            type: "value",
+            min: 80,
+            max: 100,
+            axisLine: {
+              lineStyle: {
+                color: "#d1d5db",
+              },
+            },
+            axisLabel: {
+              color: "#1f2937",
+              formatter: "{value}%",
+            },
+            splitLine: {
+              lineStyle: {
+                color: "#e5e7eb",
+              },
+            },
+          },
+          series: [
+            {
+              data: [92, 88, 95, 98],
+              type: "line",
+              smooth: true,
+              symbol: "none",
+              lineStyle: {
+                width: 3,
+                color: "rgba(87, 181, 231, 1)",
+              },
+              areaStyle: {
+                color: {
+                  type: "linear",
+                  x: 0,
+                  y: 0,
+                  x2: 0,
+                  y2: 1,
+                  colorStops: [
+                    {
+                      offset: 0,
+                      color: "rgba(87, 181, 231, 0.2)",
+                    },
+                    {
+                      offset: 1,
+                      color: "rgba(87, 181, 231, 0.05)",
+                    },
+                  ],
+                },
+              },
+            },
+          ],
+        };
+        const budgetOption = {
+          animation: false,
+          tooltip: {
+            trigger: "item",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            textStyle: {
+              color: "#1f2937",
+            },
+          },
+          legend: {
+            orient: "horizontal",
+            bottom: 0,
+            textStyle: {
+              color: "#1f2937",
+            },
+          },
+          series: [
+            {
+              name: "Budget Allocation",
+              type: "pie",
+              radius: ["40%", "70%"],
+              avoidLabelOverlap: false,
+              itemStyle: {
+                borderRadius: 8,
+                borderColor: "#fff",
+                borderWidth: 2,
+              },
+              label: {
+                show: false,
+              },
+              emphasis: {
+                label: {
+                  show: true,
+                  formatter: "{b}: {c}%",
+                  fontSize: 14,
+                  fontWeight: "bold",
+                },
+              },
+              labelLine: {
+                show: false,
+              },
+              data: [
+                {
+                  value: 35,
+                  name: "Furniture & Decor",
+                  itemStyle: { color: "rgba(87, 181, 231, 1)" },
+                },
+                {
+                  value: 25,
+                  name: "Custom Elements",
+                  itemStyle: { color: "rgba(141, 211, 199, 1)" },
+                },
+                {
+                  value: 20,
+                  name: "Materials & Finishes",
+                  itemStyle: { color: "rgba(251, 191, 114, 1)" },
+                },
+                {
+                  value: 15,
+                  name: "Lighting",
+                  itemStyle: { color: "rgba(252, 141, 98, 1)" },
+                },
+                {
+                  value: 5,
+                  name: "Art & Accessories",
+                  itemStyle: { color: "#a3a3a3" },
+                },
+              ],
+            },
+          ],
+        };
+        satisfactionChart.setOption(satisfactionOption);
+        budgetChart.setOption(budgetOption);
+        const resizeCharts = () => {
+          requestAnimationFrame(() => {
+            satisfactionChart.resize();
+            budgetChart.resize();
+          });
+        };
+        window.addEventListener("resize", resizeCharts);
+        window.addEventListener("orientationchange", resizeCharts);
+      } catch (error) {
+        console.error("Charts initialization error:", error);
+      }
+    });
+  </script>
+</body>
+
+</html>
